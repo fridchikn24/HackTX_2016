@@ -3,8 +3,14 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    private const string ANIM_FLOAT_VELOCITY = "VELOCITY";
+
+    public float moveForce;
+    public float maxSpeed = 10;
+
+
+    // Use this for initialization
+    void Start () {
 	
 	}
 	
@@ -12,4 +18,20 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    // FixedUpdate runs at a certain pace in real-time
+    void FixedUpdate()
+    {
+
+        // Cache the directional inputs
+        float axisHorz = Input.GetAxis("Horizontal");
+        float axisVert = Input.GetAxis("Vertical");
+
+        // If the player is inputting a direction, move in that direction up to the move speed
+        if (axisHorz * GetComponent<Rigidbody2D>().velocity.x < maxSpeed)
+        {
+            GetComponent<Rigidbody2D>().AddForce(Vector2.right * axisHorz * moveForce);
+            GetComponent<Rigidbody2D>().AddForce(Vector2.up * axisVert * moveForce);
+        }
+    }
 }
