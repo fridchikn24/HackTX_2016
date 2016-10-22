@@ -5,13 +5,13 @@ public class PlayerController : MonoBehaviour {
 
     private const string ANIM_FLOAT_VELOCITY = "VELOCITY";
 
-    public float moveForce;
+    public float moveForce = 200;
     public float maxSpeed = 10;
-
+    public float frictionForce = 50;
 
     // Use this for initialization
     void Start () {
-	
+        GetComponent<Rigidbody2D>().drag = 10;
 	}
 	
 	// Update is called once per frame
