@@ -31,7 +31,12 @@ public class PlayerController : MonoBehaviour {
         if (axisHorz * GetComponent<Rigidbody2D>().velocity.x < maxSpeed)
         {
             GetComponent<Rigidbody2D>().AddForce(Vector2.right * axisHorz * moveForce);
+            
+        }
+        if (axisVert * GetComponent<Rigidbody2D>().velocity.y < maxSpeed)
+        {
             GetComponent<Rigidbody2D>().AddForce(Vector2.up * axisVert * moveForce);
         }
+        
     }
 }
